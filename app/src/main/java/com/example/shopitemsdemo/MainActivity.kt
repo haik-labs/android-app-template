@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -165,20 +164,9 @@ fun ShoppingListScreen(viewModel: ShoppingViewModel = viewModel()) {
 
 @Composable
 private fun Header() {
-    Row(
-        Modifier.fillMaxWidth().padding(top = 18.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column(Modifier.weight(1f)) {
-            Text("Weekly Grocery", color = Navy, fontSize = 30.sp, fontWeight = FontWeight.ExtraBold)
-            Text("Sunday Restock List", color = Slate, fontSize = 16.sp)
-        }
-        Box(
-            Modifier.size(46.dp).clip(CircleShape).background(Mint),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text("JD", color = Teal, fontWeight = FontWeight.Bold, fontSize = 17.sp)
-        }
+    Column(Modifier.fillMaxWidth().padding(top = 18.dp)) {
+        Text("My Grocery List", color = Navy, fontSize = 30.sp, fontWeight = FontWeight.ExtraBold)
+        Text("Plan your shop, check it off", color = Slate, fontSize = 16.sp)
     }
 }
 
