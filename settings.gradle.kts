@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "shop-items-demo"
+rootProject.name = "VisaReady"
 include(":app")
