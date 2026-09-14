@@ -15,11 +15,8 @@ import com.android.billingclient.api.QueryPurchasesParams
 class BillingManager(context: Context, private val onPurchased: () -> Unit, private val onMessage: (String) -> Unit) {
     companion object { const val PRODUCT_ID = "visa_readiness_report" }
     private var details: ProductDetails? = null
-    private val client: BillingClient
-
-    init {
-        client = BillingClient.newBuilder(context)
-        .setListener { result: BillingResult, purchases ->
+    private val client = BillingClient.newBuilder(context)
+        .setListener { result, purchases ->
             if (result.responseCode == BillingClient.BillingResponseCode.OK) purchases.orEmpty().forEach { purchase ->
                 if (purchase.products.contains(PRODUCT_ID) && purchase.purchaseState == com.android.billingclient.api.Purchase.PurchaseState.PURCHASED) {
                     if (!purchase.isAcknowledged) client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.purchaseToken).build()) {}
@@ -28,7 +25,6 @@ class BillingManager(context: Context, private val onPurchased: () -> Unit, priv
             }
         }
         .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()).build()
-    }
 
     fun connect() = client.startConnection(object : BillingClientStateListener {
         override fun onBillingServiceDisconnected() = Unit

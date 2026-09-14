@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable private fun VisaTheme(content: @Composable () -> Unit) = MaterialTheme(
     colorScheme = lightColorScheme(primary = Blue, background = Canvas, surface = Color.White),
-    typography = Typography(), content = content,
+    typography = Typography(defaultFontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif), content = content,
 )
 
 @Composable fun VisaApp(vm: VisaViewModel = viewModel()) {
